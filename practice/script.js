@@ -49,6 +49,8 @@ inputform[0].addEventListener( "input", (el)=> {
 
   }
   inputform[0].classList.add("valid");
+  const iClass =  inputform[0].querySelector("i");
+  iClass.nextSibling.textContent = " ";
   }
   else{
     const classLength = inputform[0].classList.length;
@@ -61,6 +63,8 @@ inputform[0].addEventListener( "input", (el)=> {
 
   }
   inputform[0].classList.add("invalid");
+  const iClass =  inputform[0].querySelector("i");
+  iClass.nextSibling.textContent = "아이디는 8자 이상이어야 합니다.";
   }
 
 });
@@ -80,22 +84,29 @@ inputform[1].addEventListener( "input", (el)=> {
 
     if( inputform[1].classList.item(i) === "invalid" ){
       inputform[1].classList.remove("invalid");
+      
     }
 
   }
   inputform[1].classList.add("valid");
+  const iClass =  inputform[1].querySelector("i");
+  iClass.nextSibling.textContent = " ";
   }
   else{
     const classLength = inputform[1].classList.length;
+   
 
   for(let i = 0; i < classLength; i++){
-
+    
     if( inputform[1].classList.item(i) === "valid" ){
-      inputform[1].classList.remove("valid");
+      inputform[1].classList.remove("valid"); 
+      
     }
 
   }
   inputform[1].classList.add("invalid");
+  const iClass =  inputform[1].querySelector("i");
+  iClass.nextSibling.textContent = "휴대폰 번호는 - 를 포함해야 합니다.";
   }
 
 });
@@ -120,7 +131,6 @@ inputform[2].addEventListener( "input", (el)=> {
   }
   inputform[2].classList.add("valid");
   const spanClass =  inputform[2].querySelector(".message");
-  // spanClass.textContent = "";
   const iClass =  inputform[2].querySelector("i");
 
   for(let i = 0; i < iClass.classList.length; i++){
@@ -143,9 +153,64 @@ inputform[2].addEventListener( "input", (el)=> {
 
   }
   inputform[2].classList.add("invalid");
+  const iClass =  inputform[2].querySelector("i");
+  iClass.nextSibling.textContent = "최소 8자 이상, 알파벳과 숫자 및 특수문자를 포함해야 합니다.";
   }
 
 });
+
+
+inputform[3].addEventListener( "input", (el)=> {
+  const inputText = el.target.closest('input[type="text"]').value;
+  console.log(inputText)
+  if(!inputText) return;
+
+  if( elErrorMessage.className ){
+    elErrorMessage.classList.remove('show');
+  }
+  
+  const pw = document.querySelector("#password");
+
+  if( strongPassword(inputText) && (inputText === pw.value) ){
+    const classLength = inputform[3].classList.length;
+
+  for(let i = 0; i < classLength; i++){
+
+    if( inputform[3].classList.item(i) === "invalid" ){
+      inputform[3].classList.remove("invalid");
+    }
+
+  }
+  inputform[3].classList.add("valid");
+ 
+  const iClass =  inputform[3].querySelector("i");
+
+  for(let i = 0; i < iClass.classList.length; i++){
+    if( iClass.classList.item(i) === "fa-times" ){
+      iClass.classList.remove("fa-times");
+      iClass.classList.add("fa-check-circle");
+      iClass.nextSibling.textContent = "";
+    }
+  }    
+
+  }
+  else{
+    const classLength = inputform[3].classList.length;
+
+  for(let i = 0; i < classLength; i++){
+
+    if( inputform[3].classList.item(i) === "valid" ){
+      inputform[3].classList.remove("valid");
+    }
+
+  }
+  inputform[3].classList.add("invalid");
+  const iClass =  inputform[3].querySelector("i");
+  iClass.nextSibling.textContent = "비밀번호가 일치하지 않습니다.";
+  }
+
+});
+
 
 const formTag = document.querySelector("form");
 formTag.addEventListener( "submit", (el) => {
@@ -157,13 +222,17 @@ formTag.addEventListener( "submit", (el) => {
 
    // 담긴다.
    let textBox = document.body.querySelectorAll('input[type="text"]');
+   const pw = document.querySelector("#password").value;
+    const pwconfirm = document.querySelector("#pwconfirm").value;
+
+   if( moreThanLength( textBox[0].value, 8) && onlyNumberAndEnglish(textBox[0].value) && phoneNumber(textBox[1].value) && strongPassword( textBox[2].value) && (pw === pwconfirm) ){
+    
+      displayErrorMessage(' Successfully registered 👍 ');
+      for(let i=0; i<textBox.length; i++){
+        textBox[i].value = "";
+      }
    
-   if( moreThanLength( textBox[0].value, 8) && onlyNumberAndEnglish(textBox[0].value) && phoneNumber(textBox[1].value) && strongPassword( textBox[2].value) ){
-    displayErrorMessage(' Successfully registered 👍 ');
-    for(let i=0; i<textBox.length; i++){
-      textBox[i].value = "";
-    }
-   }
+  }
    else{
     displayErrorMessage('insufficient requirements to register 😥');
    }

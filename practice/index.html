@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guide</title>
   <link rel="stylesheet" href="../lib/css/font-awesome.min.css">
-  <link rel="stylesheet" href="guide.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -18,6 +18,7 @@
       <input type="text">
       <span class="message">
         <i class="fa fa-check-circle" aria-hidden="true"></i>
+        아이디는 8자 이상이어야 합니다.
       </span>
     </label>
 <!-- classList를 통해서 valid invalid를 넣어주면 되겠네 -->
@@ -26,17 +27,30 @@
       <input type="text">
       <span class="message">
         <i class="fa fa-check-circle" aria-hidden="true"></i>
+        휴대폰 번호는 - 를 포함해야 합니다.
       </span>
     </label>
 
     <label class="input-form">
       <span>Password</span>
-      <input type="text">
+      <input type="text" id="password">
       <span class="message">
         <i class="fa fa-times" aria-hidden="true"></i>
-        Those phone numbers don't match. Please check and try again.
+        최소 8자 이상, 알파벳과 숫자 및 특수문자를 포함해야 합니다.
       </span>
     </label>
+
+
+    <label class="input-form">
+      <span>Password confirm</span>
+      <input type="text" id="pwconfirm">
+      <span class="message">
+        <i class="fa fa-times" aria-hidden="true"></i>
+        비밀번호가 일치하지 않습니다.
+      </span>
+    </label>
+
+
   </div>
 
   <button id="btn-signup" role="button">회원가입</button>
@@ -44,7 +58,7 @@
   
   <div id="invalid-message"></div>
 
-  <script src="guide.js"></script>
+  <script src="script.js"></script>
 
 </body>
 
