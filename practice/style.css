@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --invalid-text-color: rgb(177, 59, 69);
+  --invalid-border-color: rgba(177, 59, 69, 0.2);
+  --invalid-background-color: rgba(255, 192, 203, 0.493);
+  --valid-text-color: rgb(51, 173, 51);
+  --minimum-width: 600px;
+}
+
+.form {
+  min-width: var(--minimum-width);
+  width: 85%;
+}
+
+.input-form {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.input-form input[type="text"],
+.input-form textarea {
+  padding: 4px 6px;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  min-width: 200px;
+}
+
+.input-form input[type="text"]:focus,
+.input-form textarea:focus {
+  color: #495057;
+  background-color: #fff;
+  outline: 1px solid #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.input-form.invalid {
+  background-color: var(--invalid-background-color);
+  color: var(--invalid-text-color);
+  border-bottom: 1px solid var(--invalid-border-color);
+}
+
+.input-form.invalid input {
+  border: 1px solid var(--invalid-text-color);
+}
+
+.input-form > span:first-child {
+  display: inline-block;
+  width: 18ch;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.input-form > .message {
+  margin: 10px;
+  font-size: 0.85rem;
+  display: none;
+}
+
+.input-form.valid > .message,
+.input-form.invalid > .message {
+  display: inline;
+}
+
+.input-form i.fa {
+  color: var(--valid-text-color);
+}
+
+.input-form.invalid i.fa {
+  color: var(--invalid-text-color);
+}
+
+#invalid-message {
+  display: none;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  width: var(--minimum-width);
+}
+
+#invalid-message.show {
+  display: block;
+}
+
+#btn-signup {
+  margin-left: 1rem;
+  background: linear-gradient(to bottom right, #ef4765, #ff9a5a);
+  border: 0;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+#btn-signup:not([disabled]):focus {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+#btn-signup:not([disabled]):hover {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
